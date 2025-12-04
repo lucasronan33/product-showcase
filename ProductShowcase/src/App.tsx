@@ -1,8 +1,10 @@
+import React from "react"
+
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { Home } from "./pages/Home/Home"
-import PokemonDetails from "./pages/PokemonDetails"
+import PokemonDetails from "./pages/PokemonDetails/PokemonDetails"
 
-function App() {
+export default function App() {
   return (
     <BrowserRouter>
       <Routes>
@@ -12,5 +14,3 @@ function App() {
     </BrowserRouter>
   )
 }
-
-export default App

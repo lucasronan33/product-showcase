@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { api } from '../../services/api/pokeApi';
-import { PokemonListResponse } from '../../interfaces/Pokemon';
+import type { PokemonListResponse } from '../../interfaces/Pokemon';
 import { getPokemonList } from '../../services/api/pokemonService';
 import { PokemonCard } from '../../components/PokemonCard/PokemonCard';
 
