@@ -39,8 +39,27 @@ export function Home() {
     p.name.toLowerCase().includes(search.toLowerCase())
      ) || [];
     
+    function handleRefresh() {
+  localStorage.removeItem("pokemon_list_cache_151");
+  setLoading(true);
+
+  getPokemonList().then((response) => {
+    setData(response);
+    setLoading(false);
+  });
+}
+
+    
     return (
-    <div className="p-5 max-w-4xl mx-auto">
+        <div className="p-5 max-w-4xl mx-auto">
+            
+            <button
+  onClick={handleRefresh}
+  className="mb-4 px-4 py-2 bg-blue-600 text-white rounded"
+>
+  Atualizar lista
+</button>
+
 
             <div className="mb-4 p-3 bg-gray-100 rounded shadow-sm">
   <h2 className="font-semibold mb-2 text-gray-900">Seu Time ({team.length}/6)</h2>
