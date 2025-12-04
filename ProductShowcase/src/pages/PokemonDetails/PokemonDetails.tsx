@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { PokemonDetails as PokemonDetailsType } from '../../interfaces/Pokemon';
+import type { PokemonDetails as PokemonDetailsType } from '../../interfaces/Pokemon';
 import { getPokemonDetails } from '../../services/api/pokemonService';
 
 export default function PokemonDetails() {
