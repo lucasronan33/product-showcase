@@ -49,3 +49,11 @@ export function PokemonTeamProvider({ children }: { children: React.ReactNode })
     </PokemonTeamContext.Provider>
   );
 }
+
+export function usePokemonTeam() {
+  const ctx = useContext(PokemonTeamContext)
+  if (!ctx) {
+    throw new Error('usePokemonTeam deve ser usado dentro de PokemonTeamProvider')
+  }
+  return ctx
+}

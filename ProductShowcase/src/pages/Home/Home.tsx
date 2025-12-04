@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import type { PokemonListResponse } from '../../interfaces/Pokemon';
 import { getPokemonList } from '../../services/api/pokemonService';
 import { PokemonCard } from '../../components/PokemonCard/PokemonCard';
+import { usePokemonTeam } from '../../context/PokemonTeamContext';
 
 export function Home() {
     const [data, setData] = useState<PokemonListResponse | null>(null)
     const [loading, setLoading] = useState(true)
-    const [search, setSearch]=useState("")
-    
+    const [search, setSearch] = useState("")
+    const { team } = usePokemonTeam();
+
     useEffect(() => {
         async function fetchData() {
             try {
@@ -40,13 +42,33 @@ export function Home() {
     return (
     <div className="p-5 max-w-4xl mx-auto">
 
+            <div className="mb-4 p-3 bg-gray-100 rounded shadow-sm">
+  <h2 className="font-semibold mb-2 text-gray-900">Seu Time ({team.length}/6)</h2>
+
+  {team.length === 0 ? (
+    <p className="text-gray-600 text-sm">Você ainda não adicionou nenhum Pokémon.</p>
+  ) : (
+    <div className="flex gap-2 flex-wrap">
+      {team.map((name) => (
+        <span
+          key={name}
+          className="px-3 py-1 bg-blue-200 rounded capitalize text-blue-900 font-medium"
+        >
+          {name}
+        </span>
+      ))}
+    </div>
+  )}
+</div>
+
       <input
-        type="text"
-        placeholder="Buscar Pokémon..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="w-full p-2 border rounded mb-4"
-      />
+  type="text"
+  placeholder="Buscar Pokémon..."
+  value={search}
+  onChange={(e) => setSearch(e.target.value)}
+  className="w-full p-2 border border-gray-300 rounded-lg mb-4 shadow-sm focus:ring-2 focus:ring-blue-400 outline-none"
+ />
+
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
         {filteredPokemon.map((pokemon) => (
